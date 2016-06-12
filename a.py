@@ -19,5 +19,5 @@ if len(sys.argv) == 2 and (sys.argv[1] == '--list'):
 elif len(sys.argv) == 3 and (sys.argv[1] == '--host'):
     host_info(sys.argv[2])
 else:
-    print "Usage: %s --list or --host <hostname>" % sys.argv[0]
+    print "Usage: %s  --list or --host <hostname>" % sys.argv[0]
     sys.exit(1)
