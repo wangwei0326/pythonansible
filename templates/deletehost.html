@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}addhost{% endblock %}
+{% block content %}
+    <ol class="breadcrumb">
+  				<li><a href="#">系统信息</a></li>
+  				<li><a href="#">主机列表</a></li>
+  				<li class="active">主机</li>
+				</ol>
+				<table class="table table-hover">
+    			<thead>
+      			<tr>
+          		<th>主机IP</th>
+          		<th>主机名</th>
+          		<th>是否</th>
+      			</tr>
+    			</thead>
+    			<tbody>
+                {% for host in hostlist %}
+            <tr>
+             	<td>
+                <div id="hostip">{{ host.hostip }}</div>
+              </td>
+              <td>
+                <div id="hostname">{{ host.hostname }}</div>
+              </td>
+              <td>
+                <label >
+                    <input type="checkbox" id="inlineCheckbox1" value="option1">
+                </label>
+              </td>
+            </tr>
+                {% endfor %}
+    			</tbody>
+				</table>
+{% endblock %}
