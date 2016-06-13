@@ -25,6 +25,8 @@ class Usergroup(models.Model):
 class Host(models.Model):
     hostname = models.CharField(max_length=20)
     hostip = models.CharField(max_length=20)
+    group_name = models.CharField(max_length=20)
+    group_name_sub = models.CharField(max_length=20)
 
     class Meta:
         managed = False
@@ -40,3 +42,11 @@ class ConfigFileSet(models.Model):
     class Meta:
         managed = False
         db_table = 'config_file_set'
+
+class ServerGroup(models.Model):
+    group_name = models.CharField(max_length=20, blank=True, null=True)
+    group_name_sub = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'server_group'

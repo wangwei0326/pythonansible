@@ -1,53 +1,62 @@
 {% extends "base.html" %}
 {% block title %}hostlist{% endblock %}
 {% block content %}
-                <ol class="breadcrumb">
-  				<li><a href="#">系统信息</a></li>
-  				<li><a href="#">主机列表</a></li>
-  				<li class="active">主机</li>
-				</ol>
-                <form  method="POST" action="/listhost/" class="form-inline" name="hostlist">
-                    <select class="form-control" name="seachtype">
-                        <option value="hostip">主机IP</option>
-                        <option value="hostname">主机名</option>
-                    </select>
-                    <div class="input-group">
-							<input type="text" class="form-control"  name="seachcontent"/>
+    <ol class="breadcrumb">
+        <li><a href="#">系统信息</a></li>
+        <li><a href="#">主机列表</a></li>
+        <li class="active">主机</li>
+    </ol>
+    <form method="POST" action="/listhost/" class="form-inline" name="hostlist">
+        <select class="form-control" name="seachtype">
+            <option value="hostip">主机IP</option>
+            <option value="hostname">主机名</option>
+            <option value="group_name">组名</option>
+        </select>
+        <div class="input-group">
+            <input type="text" class="form-control" name="seachcontent"/>
 							<span class="input-group-btn">
 								<button type="submit" class="btn btn-default">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
 							</span>
-                    </div>
-                </form>
-				<table class="table table-hover">
-    			<thead>
-      			<tr>
-          		<th>主机IP</th>
-          		<th>主机名</th>
-          		<th>主机信息</th>
-          		<th>是否勾选</th>
-      			</tr>
-    			</thead>
-    			<tbody>
-                {% for host in hostlist %}
-                <tr>
-             	<td>
-                <div id="hostip">{{ host.hostip }}</div>
-              </td>
-              <td>
-                <div id="hostname">{{ host.hostname }}</div>
-              </td>
-              <td>
-                <button id="restarttomcat" type="submit" class="btn btn-default" >主机信息</button>
-              </td>
-              <td>
-                  <input type="checkbox" class="blankCheckbox" value="1" >
-              </td>
-                </tr>
-                {% endfor %}
-    			</tbody>
-				</table>
+        </div>
+    </form>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>主机IP</th>
+            <th>主机名</th>
+            <th>分组</th>
+            <th>子分组</th>
+            <th>主机信息</th>
+            <th>是否勾选</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for host in hostlist %}
+            <tr>
+                <td>
+                    <div id="hostip">{{ host.hostip }}</div>
+                </td>
+                <td>
+                    <div id="hostname">{{ host.hostname }}</div>
+                </td>
+                <td>
+                    <div id="group_name">{{ host.group_name }}</div>
+                </td>
+                <td>
+                    <div id="group_name_sub">{{ host.group_name_sub }}</div>
+                </td>
+                <td>
+                    <button id="restarttomcat" type="submit" class="btn btn-default">主机信息</button>
+                </td>
+                <td>
+                    <input type="checkbox" class="blankCheckbox" value="1">
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     <button id="deletehost" type="button" class="btn btn-default">删除主机</button>
 {% endblock %}
 {% block myjs %}

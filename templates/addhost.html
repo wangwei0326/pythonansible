@@ -18,6 +18,18 @@
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="主机IP"  name="hostip">
 					</div>
+                    <div class="form-group">
+                        <span>分组：</span>
+                        <select id="group_select" class="form-control" name="group_name">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span>子分组：</span>
+                        <select id="sub_group_select" class="form-control" name="group_name_sub">
+                            <option></option>
+                        </select>
+                    </div>
 					<div>
 						<button class="btn" type="submit">提交</button>
 					</div>
@@ -27,4 +39,31 @@
         <h3><span style="color: #5bc0de">{{ sucess }}</span></h3>
     {% endif %}
     </div>
+{% endblock %}
+{% block myjs %}
+    <script type="text/javascript">
+            $.post("/listgroup/",
+                    function (data, status) {
+                        data = $.parseJSON(data);
+                        $("#group_select").empty();
+                        for (var key in data) {
+                            $("#group_select").append("<option value=" + key + ">" + key + "</option>");
+                        };
+                    });
+            $("#group_select").change(function(){
+                $.post("/listgroup/",
+                        function(data,status){
+                            data = $.parseJSON(data);
+                            $("#sub_group_select").empty();
+                            for (var key in data){
+                                if  ($("#group_select").val()==key){
+                                    for (var i in data[key]['group_name_sub']) {
+                                        $("#sub_group_select").append(" <option value=" + data[key]['group_name_sub'][i] + ">" + data[key]['group_name_sub'][i] + "</option>");
+                                    }
+                            break;
+                                }
+                            }
+                });
+            });
+    </script>
 {% endblock %}

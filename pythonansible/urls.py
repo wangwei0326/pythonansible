@@ -26,4 +26,7 @@ url(r'^$', APP1.views.login),
     url(r'^listhost', APP1.views.listhost),
     url(r'^deletehost', APP1.views.deletehost),
     url(r'^upload', APP1.views.upload),
+    url(r'^addgroup', APP1.views.addgroup),
+    url(r'^listgroup', APP1.views.listgroup),
+    url(r'^add_sub_group', APP1.views.add_sub_group),
 ]
