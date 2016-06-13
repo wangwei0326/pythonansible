@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}addgroup{% endblock %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="#">系统信息</a></li>
+        <li><a href="#">主机列表</a></li>
+        <li class="active">主机</li>
+    </ol>
+    <div class="container form-group-lg" style="width: 500px;">
+        <form method="post" action="/addgroup/">
+            <div>
+                <div class="form-group">
+                    <h3><span style="color: #3c3c3c">添加分组</span></h3>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="分组名" name="groupname">
+                </div>
+                <div>
+                    <button class="btn" type="submit">提交</button>
+                </div>
+            </div>
+        </form>
+    {% if sucess %}
+        <h3><span style="color: #5bc0de">{{ sucess }}</span></h3>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}grouplist{% endblock %}
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="#">系统信息</a></li>
+        <li><a href="#">主机列表</a></li>
+        <li class="active">主机</li>
+    </ol>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>分组名</th>
+            <th>子分组名</th>
+            <th>添加分组</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for group in grouplist %}
+            <tr>
+                <td>
+                    <div id="group_name">{{ group.group_name }}</div>
+                </td>
+                <td>
+                    <div id="group_name_sub">{{ group.group_name_sub }}</div>
+                </td>
+                <td>
+                    <button id="add_sub_group" type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal">添加子分组</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button id="deletegroup" type="button" class="btn btn-default">删除分组</button>
+{% endblock %}
+{% block modal %}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加子分组</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal bs-example bs-example-form" action="/add_sub_group/" method="post">
+                        <div class="form-group">
+                            <label for="inputgroupname" class="col-sm-3 control-label">分组名：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="inputgroupname" readonly placeholder="分组名" name="inputgroupname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputsubgroupname" class="col-sm-3 control-label">子分组名：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="inputsubgroupname" placeholder="子分组名" name="inputsubgroupname">
+                            </div>
+                        </div>
+                        <div class="form-group modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary">添加</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block myjs %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("button[id*='add_sub_group']").click(function () {
+                value1 = $(this).parent().parent().find('#group_name').text()
+                $("#group_server_name").text(value1);
+                $("#inputgroupname").val(value1)
+            });
+        });
+    </script>
+{% endblock %}
