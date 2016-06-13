@@ -2,9 +2,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.core.urlresolvers import reverse
 from APP1.models  import *
 from mytool import UpLoad
 import json
+import APP1.views
 # Create your views here.
 def login(request):
     return render(request, 'login.html')
