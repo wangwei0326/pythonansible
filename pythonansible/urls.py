@@ -29,4 +29,7 @@ url(r'^$', APP1.views.login),
     url(r'^addgroup', APP1.views.addgroup),
     url(r'^listgroup', APP1.views.listgroup),
     url(r'^add_sub_group', APP1.views.add_sub_group),
+    url(r'^add_config_file', APP1.views.add_config_file),
+    url(r'^list_config_file', APP1.views.list_config_file),
+    url(r'^read_config_file', APP1.views.read_config_file),
 ]

@@ -6,22 +6,41 @@
         <li><a href="#">主机列表</a></li>
         <li class="active">主机</li>
     </ol>
+    <form method="POST" action="/listgroup/" class="form-inline" name="listgroup">
+        <select class="form-control" name="seachtype">
+            <option value="group_name">组名</option>
+        </select>
+        <div class="input-group">
+            <input type="text" class="form-control" name="seachcontent"/>
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+							</span>
+        </div>
+    </form>
     <table class="table table-hover">
         <thead>
         <tr>
+            <th>行号</th>
             <th>分组名</th>
             <th>子分组名</th>
             <th>添加分组</th>
         </tr>
         </thead>
         <tbody>
-        {% for group in grouplist %}
+        {% for key,values in grouplist.items %}
             <tr>
                 <td>
-                    <div id="group_name">{{ group.group_name }}</div>
+                    <div id="id">{{ forloop.counter }}</div>
                 </td>
                 <td>
-                    <div id="group_name_sub">{{ group.group_name_sub }}</div>
+                    <div id="group_name">{{ key }}</div>
+                </td>
+                <td>
+                    {% for i in values.group_name_sub %}
+                    <div id="group_name_sub">{{ i }}</div>
+                     {% endfor %}
                 </td>
                 <td>
                     <button id="add_sub_group" type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal">添加子分组</button>
@@ -70,7 +89,6 @@
         $(document).ready(function() {
             $("button[id*='add_sub_group']").click(function () {
                 value1 = $(this).parent().parent().find('#group_name').text()
-                $("#group_server_name").text(value1);
                 $("#inputgroupname").val(value1)
             });
         });
