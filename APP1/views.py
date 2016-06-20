@@ -149,7 +149,6 @@ def add_config_file(request):
         if not request.method == 'POST':
             return render(request,'configuration_file.html')
         else:
-            print request.POST
             config_file_name=request.POST['config_file_name']
             config_file_content=request.POST['config_file_content']
             group_name=request.POST['group_name']

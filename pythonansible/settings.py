@@ -86,9 +86,9 @@ DATABASES = {
     'default': {
        'ENGINE':'django.db.backends.mysql',
        'NAME': 'ansible_web',
-       'USER': 'ansible',
-       'PASSWORD': 'ansible_web',
-       'HOST':'10.0.91.250',
+       'USER': 'root',
+       'PASSWORD': '',
+       'HOST':'127.0.0.1',
        'PORT':'3306',
     }
 }
